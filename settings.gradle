@@ -1,0 +1,2 @@
+rootProject.name = "triddy"
+include ':app'
