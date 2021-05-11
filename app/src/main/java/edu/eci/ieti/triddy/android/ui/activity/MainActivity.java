@@ -1,8 +1,10 @@
-package edu.eci.ieti.triddy.android;
+package edu.eci.ieti.triddy.android.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import edu.eci.ieti.triddy.android.R;
 
 public class MainActivity extends AppCompatActivity {
 
