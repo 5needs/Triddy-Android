@@ -65,6 +65,7 @@ public class LoginActivity
                         {
                             Token token = response.body();
                             storage.saveToken( token );
+                            storage.saveEmail(loginWrapper.email);
                             startActivity( new Intent( LoginActivity.this, MainActivity.class ) );
                             finish();
                         }

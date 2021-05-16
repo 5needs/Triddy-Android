@@ -11,6 +11,7 @@ public class Storage
 {
 
     private final String TOKEN_KEY = "TOKEN_KEY";
+    private final String EMAIL = "EMAIL";
 
     private final SharedPreferences sharedPreferences;
 
@@ -38,6 +39,13 @@ public class Storage
     public void clear()
     {
         sharedPreferences.edit().remove( TOKEN_KEY ).apply();
+        sharedPreferences.edit().remove( EMAIL ).apply();
+    }
+
+    public String getEmail(){ return sharedPreferences.getString(EMAIL, null); }
+
+    public void saveEmail (String email){
+        sharedPreferences.edit().putString(EMAIL,email).apply();
     }
 
 }
