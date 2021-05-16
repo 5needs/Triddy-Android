@@ -10,11 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import edu.eci.ieti.triddy.android.R;
 import edu.eci.ieti.triddy.android.storage.Storage;
@@ -34,17 +31,6 @@ public class MainActivity
         storage = new Storage( this );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-
-        FloatingActionButton fab = findViewById( R.id.fab );
-        fab.setOnClickListener( new View.OnClickListener()
-        {
-            @Override
-            public void onClick( View view )
-            {
-                Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action",
-                        null ).show();
-            }
-        } );
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         ActionBarDrawerToggle toggle =

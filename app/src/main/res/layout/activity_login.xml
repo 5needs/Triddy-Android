@@ -7,42 +7,25 @@
                                                    tools:context=".ui.activity.LoginActivity">
 
   <TextView
-      android:id="@+id/textView2"
+      android:id="@+id/LoginTextView"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_height="0dp"
       android:layout_marginStart="8dp"
       android:layout_marginLeft="8dp"
-      android:layout_marginTop="4dp"
+      android:layout_marginTop="52dp"
       android:layout_marginEnd="8dp"
       android:layout_marginRight="8dp"
       android:text="@string/app_name"
-      android:textColor="@color/colorPrimaryDark"
+      android:textColor="#FF9800"
       android:textSize="30sp"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-  <ImageView
-      android:id="@+id/imageView2"
-      android:layout_width="120dp"
-      android:layout_height="120dp"
-      android:layout_marginBottom="8dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginLeft="8dp"
-      android:layout_marginRight="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
-      app:layout_constraintBottom_toTopOf="@+id/email"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@mipmap/ic_launcher" />
-
   <EditText
       android:id="@+id/email"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_width="351dp"
+      android:layout_height="39dp"
       android:layout_margin="10dp"
       android:layout_marginBottom="8dp"
       android:ems="10"
@@ -55,13 +38,9 @@
 
   <EditText
       android:id="@+id/password"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="8dp"
-      android:layout_marginLeft="8dp"
-      android:layout_marginRight="8dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginTop="8dp"
+      android:layout_width="351dp"
+      android:layout_height="39dp"
+      android:layout_marginTop="20dp"
       android:ems="10"
       android:hint="@string/password"
       android:inputType="textPassword"
@@ -71,16 +50,30 @@
 
   <Button
       android:id="@+id/button"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_width="182dp"
+      android:layout_height="36dp"
       android:layout_margin="10dp"
       android:layout_marginBottom="8dp"
+      android:background="#FF9800"
       android:onClick="onLoginClicked"
       android:padding="10dp"
       android:text="@string/login"
+      android:textColor="#000000"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.497"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/password" />
+      app:layout_constraintTop_toBottomOf="@+id/password"
+      app:layout_constraintVertical_bias="0.358" />
+
+  <ImageView
+      android:id="@+id/imageView2"
+      android:layout_width="145dp"
+      android:layout_height="145dp"
+      android:layout_marginTop="68dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/triddy_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
