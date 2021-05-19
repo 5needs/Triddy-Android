@@ -12,7 +12,6 @@ import android.widget.ListView;
 
 import edu.eci.ieti.triddy.android.model.Message;
 import edu.eci.ieti.triddy.android.storage.Storage;
-import edu.eci.ieti.triddy.android.ui.activity.ChatListActivity;
 import edu.eci.ieti.triddy.android.adapter.MessageAdapter;
 
 import com.ieti.triddy.viewModel.MessageViewModel;

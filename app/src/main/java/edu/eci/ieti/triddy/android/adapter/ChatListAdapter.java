@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import edu.eci.ieti.triddy.android.R;
+import edu.eci.ieti.triddy.android.model.Message;
 
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHolder> {
     List<Chat> chatList = null;

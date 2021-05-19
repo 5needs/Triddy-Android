@@ -17,14 +17,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -36,7 +29,23 @@
             android:label="Mis preguntas"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.activity.ChatActivity"/>
+        <activity android:name=".ui.activity.ChatActivity"
+            android:parentActivityName=".ui.activity.ChatListActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ui.activity.ChatListActivity" />
+        </activity>
+
+
+
+        <activity android:name=".ui.activity.CalificationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 
