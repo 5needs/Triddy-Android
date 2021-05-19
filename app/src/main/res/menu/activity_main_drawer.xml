@@ -10,6 +10,17 @@
 
   <item android:title="@string/options">
     <menu>
+
+      <item
+          android:id="@+id/drawer_layout"
+          android:icon="@drawable/ic_menu_logout"
+          android:title="Inicio"/>
+
+      <item
+          android:id="@+id/chatList"
+          android:icon="@drawable/ic_menu_logout"
+          android:title="Mis Preguntas"/>
+
       <item
           android:id="@+id/nav_logout"
           android:icon="@drawable/ic_menu_logout"

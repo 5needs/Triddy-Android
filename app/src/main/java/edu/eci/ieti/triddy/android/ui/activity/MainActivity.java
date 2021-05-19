@@ -97,7 +97,6 @@ public class MainActivity
     @Override
     public boolean onNavigationItemSelected( MenuItem item )
     {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if ( id == R.id.nav_logout )
@@ -105,6 +104,11 @@ public class MainActivity
             storage.clear();
             startActivity( new Intent( this, LoginActivity.class ) );
             finish();
+        }
+
+        if (id == R.id.chatList){
+            Intent intent = new Intent(this, ChatListActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
