@@ -11,14 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Triddy">
-
+        <activity android:name=".ui.activity.LaunchActivity">
+        </activity>
 
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -31,8 +33,10 @@
 
         <activity
             android:name=".ui.activity.ChatListActivity"
-            android:label="Mis Preguntas"
+            android:label="Mis preguntas"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".ui.activity.ChatActivity"/>
 
     </application>
 

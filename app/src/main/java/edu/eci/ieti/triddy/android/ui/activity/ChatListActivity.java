@@ -71,11 +71,10 @@ public class ChatListActivity extends AppCompatActivity implements ChatListAdapt
     @Override
     public void onChatClicked(int position) {
         Chat chat = chatListAdapter.getChat(position);
-        System.out.println(chat);
-        //Intent intent = new Intent(this, ChatActivity.class);
-        //intent.putExtra(CHATID, chat.getId());
-        //intent.putExtra(USER, chat.getUser2());
-        //startActivity(intent);
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(CHATID, chat.getId());
+        intent.putExtra(USER, chat.getUser2());
+        startActivity(intent);
     }
 
     @Override
