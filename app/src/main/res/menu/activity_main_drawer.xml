@@ -22,6 +22,11 @@
           android:title="Mis Preguntas"/>
 
       <item
+          android:id="@+id/my_rents"
+          android:icon="@drawable/ic_menu_logout"
+          android:title="Mis Rentas"/>
+
+      <item
           android:id="@+id/nav_logout"
           android:icon="@drawable/ic_menu_logout"
           android:title="@string/logout" />

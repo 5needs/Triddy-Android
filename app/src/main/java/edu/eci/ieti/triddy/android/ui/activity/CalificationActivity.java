@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,15 +13,23 @@ import android.widget.RatingBar;
 import edu.eci.ieti.triddy.android.model.Calification;
 import com.ieti.triddy.viewModel.CalificationViewModel;
 import edu.eci.ieti.triddy.android.R;
+import edu.eci.ieti.triddy.android.storage.Storage;
 
 public class CalificationActivity extends AppCompatActivity {
     private CalificationViewModel calificationViewModel;
+    private Storage storage;
+    private String product;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calification);
         calificationViewModel = new ViewModelProvider(this).get(CalificationViewModel.class);
+        storage = new Storage( this );
+        Intent intent = getIntent();
+        this.user = intent.getStringExtra(MyRentsActivity.USERPRODUCT);
+        this.product = intent.getStringExtra(MyRentsActivity.PRODUCTID);
     }
 
     public void send(View view){
@@ -39,10 +48,9 @@ public class CalificationActivity extends AppCompatActivity {
             Double status_d = Double.valueOf(status.toString());
             Double charac_d = Double.valueOf(charac.toString());
             Double status_u_d = Double.valueOf(status_u.toString());
-            String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMiIsInJvbGVzIjoidXNlciIsImlhdCI6MTYyMDY4OTA4OH0.NmoNbhffcc2Nr2ZMqBC6qsDZc9D59JWO3Rym3y1s5zI";
-            Calification calification = new Calification("user1@mail.com", "product",(Double) status_d,charac_d,
-                                com_pr.getText().toString(), "user", status_u_d, com_us.getText().toString());
-            calificationViewModel.addCalification(token, calification).observe(this, calification1 -> {
+            Calification calification = new Calification(storage.getEmail(), this.product,(Double) status_d,charac_d,
+                                com_pr.getText().toString(), this.user, status_u_d, com_us.getText().toString());
+            calificationViewModel.addCalification(storage.getToken(), calification).observe(this, calification1 -> {
                 final Calification newCalification = calification1;
             });
         }

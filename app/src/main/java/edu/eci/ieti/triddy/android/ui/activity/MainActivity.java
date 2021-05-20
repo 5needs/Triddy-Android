@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -108,6 +107,11 @@ public class MainActivity
 
         if (id == R.id.chatList){
             Intent intent = new Intent(this, ChatListActivity.class);
+            startActivity(intent);
+        }
+
+        if (id == R.id.my_rents){
+            Intent intent = new Intent(this, MyRentsActivity.class);
             startActivity(intent);
         }
 

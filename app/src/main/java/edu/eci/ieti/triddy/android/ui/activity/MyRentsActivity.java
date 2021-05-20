@@ -1,5 +1,15 @@
 package edu.eci.ieti.triddy.android.ui.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.google.android.material.navigation.NavigationView;
+
+import edu.eci.ieti.triddy.android.adapter.RentAdapter;
+import edu.eci.ieti.triddy.android.model.Rent;
+import edu.eci.ieti.triddy.android.storage.Storage;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,39 +19,33 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
+import edu.eci.ieti.triddy.android.R;
+import edu.eci.ieti.triddy.android.viewModel.RentViewModel;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
-import edu.eci.ieti.triddy.android.adapter.ChatListAdapter;
-import edu.eci.ieti.triddy.android.model.Chat;
-import edu.eci.ieti.triddy.android.storage.Storage;
+public class MyRentsActivity extends AppCompatActivity implements RentAdapter.OnRentListener, NavigationView.OnNavigationItemSelectedListener  {
 
-import com.google.android.material.navigation.NavigationView;
-import com.ieti.triddy.viewModel.ChatViewModel;
-import edu.eci.ieti.triddy.android.R;
-
-public class ChatListActivity extends AppCompatActivity implements ChatListAdapter.OnChatListener, NavigationView.OnNavigationItemSelectedListener {
     private Storage storage;
-    private ChatListAdapter chatListAdapter;
+    private RentAdapter rentAdapter;
     private RecyclerView recyclerView;
-    public static final String CHATID = "edu.eci.ieti.triddy.android.ui.activity.CHATID";
-    public static final String USERCHAT = "edu.eci.ieti.triddy.android.ui.activity.USERCHAT";
-
+    private RentViewModel rentViewModel;
+    public static final String PRODUCTID = "edu.eci.ieti.triddy.android.ui.activity.PRODUCTID";
+    public static final String USERPRODUCT = "edu.eci.ieti.triddy.android.ui.activity.USERPRODUCT";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatlist);
+        setContentView(R.layout.activity_my_rents);
         storage = new Storage( this );
         //setTitle("Mis preguntas");
-        chatListAdapter = new ChatListAdapter(this);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_ChatList);
+        rentAdapter = new RentAdapter(this);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_MyRents);
 
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
-        DrawerLayout drawer = findViewById( R.id.chatList);
+        DrawerLayout drawer = findViewById( R.id.my_rents);
         ActionBarDrawerToggle toggle =
                 new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open,
                         R.string.navigation_drawer_close );
@@ -57,24 +61,25 @@ public class ChatListActivity extends AppCompatActivity implements ChatListAdapt
     private void configureRecyclerView(){
         recyclerView.setHasFixedSize( true );
         LinearLayoutManager layoutManager = new LinearLayoutManager( this );
-        recyclerView.setAdapter( chatListAdapter );
+        recyclerView.setAdapter( rentAdapter );
         recyclerView.setLayoutManager(layoutManager);
-        ChatViewModel chatsViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
-        chatsViewModel.getChats(storage.getToken(), storage.getEmail()).observe(this, chats -> {
+        rentViewModel = new ViewModelProvider(this).get(RentViewModel.class);
+        rentViewModel.getRents(storage.getToken(), storage.getEmail()).observe(this, rents -> {
             runOnUiThread(() -> {
-                chatListAdapter.updateChat(chats);
+                rentAdapter.updateRents(rents);
             });
         });
     }
 
     @Override
-    public void onChatClicked(int position) {
-        Chat chat = chatListAdapter.getChat(position);
-        Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra(CHATID, chat.getId());
-        intent.putExtra(USERCHAT, chat.getUser2());
+    public void onRentClicked(int position) {
+        Rent rent = rentAdapter.getRent(position);
+        Intent intent = new Intent(this, CalificationActivity.class);
+        intent.putExtra(PRODUCTID, rent.getProductId());
+        intent.putExtra(USERPRODUCT, rent.getUserOwner());
         startActivity(intent);
     }
+
 
     @Override
     public void onBackPressed()
@@ -132,15 +137,14 @@ public class ChatListActivity extends AppCompatActivity implements ChatListAdapt
             startActivity(intent);
         }
 
-        if (id == R.id.my_rents){
-            Intent intent = new Intent(this, MyRentsActivity.class);
+        if (id == R.id.chatList){
+            Intent intent = new Intent(this, ChatListActivity.class);
             startActivity(intent);
         }
 
-        DrawerLayout drawer = findViewById( R.id.chatList );
+        DrawerLayout drawer = findViewById( R.id.my_rents );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
-
 
 }
