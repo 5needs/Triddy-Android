@@ -136,6 +136,10 @@ public class ChatListActivity extends AppCompatActivity implements ChatListAdapt
             Intent intent = new Intent(this, MyRentsActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.profile){
+            Intent intent = new Intent(this, MyProfileActivity.class);
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = findViewById( R.id.chatList );
         drawer.closeDrawer( GravityCompat.START );

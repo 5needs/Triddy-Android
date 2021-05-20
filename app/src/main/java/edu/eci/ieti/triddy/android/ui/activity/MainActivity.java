@@ -115,6 +115,11 @@ public class MainActivity
             startActivity(intent);
         }
 
+        if (id == R.id.profile){
+            Intent intent = new Intent(this, MyProfileActivity.class);
+            startActivity(intent);
+        }
+
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
