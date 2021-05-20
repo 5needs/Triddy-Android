@@ -5,36 +5,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-import com.google.android.material.navigation.NavigationView;
-
-import edu.eci.ieti.triddy.android.R;
+import edu.eci.ieti.triddy.android.adapter.ChatListAdapter;
+import edu.eci.ieti.triddy.android.model.Chat;
 import edu.eci.ieti.triddy.android.storage.Storage;
 
-public class MainActivity
-        extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener
-{
+import com.google.android.material.navigation.NavigationView;
+import com.ieti.triddy.viewModel.ChatViewModel;
+import edu.eci.ieti.triddy.android.R;
 
+public class ChatListActivity extends AppCompatActivity implements ChatListAdapter.OnChatListener, NavigationView.OnNavigationItemSelectedListener {
     private Storage storage;
+    private ChatListAdapter chatListAdapter;
+    private RecyclerView recyclerView;
+    public static final String CHATID = "edu.eci.ieti.triddy.android.ui.activity.CHATID";
+    public static final String USERCHAT = "edu.eci.ieti.triddy.android.ui.activity.USERCHAT";
 
     @Override
-    protected void onCreate( Bundle savedInstanceState )
-    {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_main );
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chatlist);
         storage = new Storage( this );
+        //setTitle("Mis preguntas");
+        chatListAdapter = new ChatListAdapter(this);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView_ChatList);
+
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.chatList);
         ActionBarDrawerToggle toggle =
                 new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open,
                         R.string.navigation_drawer_close );
@@ -44,19 +51,35 @@ public class MainActivity
         NavigationView navigationView = findViewById( R.id.nav_view );
         navigationView.setNavigationItemSelectedListener( this );
 
-        showUserEmail(navigationView);
+        configureRecyclerView();
     }
 
-    private void showUserEmail(NavigationView navigationView) {
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
-        navUsername.setText(storage.getEmail());
+    private void configureRecyclerView(){
+        recyclerView.setHasFixedSize( true );
+        LinearLayoutManager layoutManager = new LinearLayoutManager( this );
+        recyclerView.setAdapter( chatListAdapter );
+        recyclerView.setLayoutManager(layoutManager);
+        ChatViewModel chatsViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
+        chatsViewModel.getChats(storage.getToken(), storage.getEmail()).observe(this, chats -> {
+            runOnUiThread(() -> {
+                chatListAdapter.updateChat(chats);
+            });
+        });
+    }
+
+    @Override
+    public void onChatClicked(int position) {
+        Chat chat = chatListAdapter.getChat(position);
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(CHATID, chat.getId());
+        intent.putExtra(USERCHAT, chat.getUser2());
+        startActivity(intent);
     }
 
     @Override
     public void onBackPressed()
     {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.chatList );
         if ( drawer.isDrawerOpen( GravityCompat.START ) )
         {
             drawer.closeDrawer( GravityCompat.START );
@@ -94,8 +117,7 @@ public class MainActivity
 
     @SuppressWarnings( "StatementWithEmptyBody" )
     @Override
-    public boolean onNavigationItemSelected( MenuItem item )
-    {
+    public boolean onNavigationItemSelected( MenuItem item ){
         int id = item.getItemId();
 
         if ( id == R.id.nav_logout )
@@ -105,8 +127,8 @@ public class MainActivity
             finish();
         }
 
-        if (id == R.id.chatList){
-            Intent intent = new Intent(this, ChatListActivity.class);
+        if (id == R.id.drawer_layout){
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
@@ -115,8 +137,10 @@ public class MainActivity
             startActivity(intent);
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.chatList );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
+
+
 }

@@ -12,6 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Triddy">
         <activity android:name=".ui.activity.LaunchActivity">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -21,15 +32,30 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".ui.activity.ChatListActivity"
+            android:label="Mis preguntas"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:name=".ui.activity.MyRentsActivity"
+            android:label="Mis rentas"
+            android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity android:name=".ui.activity.ChatActivity"
+            android:parentActivityName=".ui.activity.ChatListActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".ui.activity.ChatListActivity" />
+        </activity>
+
+
+
+        <activity android:name=".ui.activity.CalificationActivity"
+            android:parentActivityName=".ui.activity.MyRentsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.activity.MyRentsActivity" />
+        </activity>
     </application>
 
 </manifest>
