@@ -17,14 +17,17 @@
           android:title="Inicio" />
       <item
           android:id="@+id/profile"
+          android:icon="@drawable/user"
           android:title="Mi perfil" />
 
       <item
           android:id="@+id/chatList"
+          android:icon="@drawable/question"
           android:title="Mis Preguntas" />
 
       <item
           android:id="@+id/my_rents"
+          android:icon="@drawable/history"
           android:title="Mis Rentas" />
 
       <item

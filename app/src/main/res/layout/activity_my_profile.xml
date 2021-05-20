@@ -2,54 +2,106 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff4e7"
     tools:context=".ui.activity.MyProfileActivity">
 
 
     <TextView
         android:id="@+id/textViewEmail"
-        android:layout_width="151dp"
+        android:layout_width="190dp"
         android:layout_height="33dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="sans-serif"
-        android:textSize="24sp"
+        android:gravity="center"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail2" />
+
+    <TextView
+        android:id="@+id/textViewCareer"
+        android:layout_width="190dp"
+        android:layout_height="33dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCareer2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewCareer2"
+        android:layout_width="79dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="Carrera"
+        android:textColor="#FF9800"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewU" />
+
+    <TextView
+        android:id="@+id/textViewU"
+        android:layout_width="190dp"
+        android:layout_height="33dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewU2" />
+
+    <TextView
+        android:id="@+id/textViewEmail2"
+        android:layout_width="68dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="72dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="@string/email"
+        android:textColor="#FF9800"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
     <TextView
         android:id="@+id/textViewName"
-        android:layout_width="151dp"
+        android:layout_width="190dp"
         android:layout_height="33dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
-        android:textSize="24sp"
+        android:gravity="center"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilephoto" />
 
     <TextView
-        android:id="@+id/textViewU"
-        android:layout_width="151dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="36dp"
+        android:id="@+id/textViewU2"
+        android:layout_width="88dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif"
-        android:textSize="24sp"
+        android:gravity="center"
+        android:text="Universidad"
+        android:textColor="#FF9800"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
-
-    <TextView
-        android:id="@+id/textViewCareer"
-        android:layout_width="151dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="sans-serif"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewU" />
 
     <ImageView
         android:id="@+id/profilephoto"

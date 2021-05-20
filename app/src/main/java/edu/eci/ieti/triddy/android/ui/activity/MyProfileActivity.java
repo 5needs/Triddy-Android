@@ -2,10 +2,13 @@ package edu.eci.ieti.triddy.android.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -34,6 +37,11 @@ public class MyProfileActivity extends AppCompatActivity {
         retrofitNetwork = new RetrofitNetwork(storage.getToken());
 
         getUserData(storage.getEmail());
+
+        if(storage.getEmail().equals("user1@mail.com")) {
+            ImageView imageview = (ImageView) findViewById(R.id.profilephoto);
+            imageview.setImageResource(R.drawable.profile1);
+        }
 
     }
 
