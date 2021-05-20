@@ -38,7 +38,7 @@ public class MyRentsActivity extends AppCompatActivity implements RentAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_rents);
         storage = new Storage( this );
-        //setTitle("Mis preguntas");
+
         rentAdapter = new RentAdapter(this);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_MyRents);
 
@@ -139,6 +139,10 @@ public class MyRentsActivity extends AppCompatActivity implements RentAdapter.On
 
         if (id == R.id.chatList){
             Intent intent = new Intent(this, ChatListActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.profile){
+            Intent intent = new Intent(this, MyProfileActivity.class);
             startActivity(intent);
         }
 

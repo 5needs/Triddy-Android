@@ -8,6 +8,7 @@ import java.io.IOException;
 import edu.eci.ieti.triddy.android.network.service.AuthService;
 import edu.eci.ieti.triddy.android.network.service.CalificationService;
 import edu.eci.ieti.triddy.android.network.service.ChatService;
+import edu.eci.ieti.triddy.android.network.service.UserService;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -21,6 +22,7 @@ public class RetrofitNetwork {
     private AuthService authService;
     private ChatService chatService;
     private CalificationService calificationService;
+    private UserService userService;
 
     public RetrofitNetwork() {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL[0])
@@ -48,6 +50,7 @@ public class RetrofitNetwork {
                 new Retrofit.Builder().baseUrl(BASE_URL[0]).addConverterFactory(GsonConverterFactory.create()).client(
                         httpClient.build()).build();
         authService = retrofit.create(AuthService.class);
+        userService = retrofit.create(UserService.class);
     }
 
     public RetrofitNetwork( final String token, int pos )
@@ -87,6 +90,10 @@ public class RetrofitNetwork {
 
     public CalificationService getCalificationService(){
         return this.calificationService;
+    }
+
+    public UserService getUserService(){
+        return this.userService;
     }
 }
 
