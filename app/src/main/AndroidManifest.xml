@@ -12,14 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Triddy"
         android:usesCleartextTraffic="true">
-
         <activity android:name=".ui.activity.LaunchActivity" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.ResumeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -51,7 +50,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.activity.MyRentsActivity" />
         </activity>
-        <activity android:name=".ui.activity.MyProfileActivity"
+        <activity
+            android:name=".ui.activity.MyProfileActivity"
             android:label="Mi perfil"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
